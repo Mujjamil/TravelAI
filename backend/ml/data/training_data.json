@@ -1,0 +1,218 @@
+{
+  "intents": [
+    {
+      "tag": "welcome",
+      "patterns": [
+        "hi", "hello", "hey", "good morning", "good evening", "good afternoon",
+        "hey there", "howdy", "greetings", "what's up", "sup", "yo",
+        "start", "begin", "help", "help me", "what can you do",
+        "i need help", "i want to travel", "travel help", "plan a vacation",
+        "i want to go somewhere", "let's plan a trip", "travel assistant"
+      ]
+    },
+    {
+      "tag": "trip.plan",
+      "patterns": [
+        "plan a trip to paris", "plan a trip to bali", "plan a trip to tokyo",
+        "i want to plan a trip to london", "plan my trip to dubai",
+        "help me plan a trip to singapore", "plan a vacation to maldives",
+        "i want to go to rome", "planning a trip to new york",
+        "help plan my vacation", "plan a budget trip to thailand",
+        "plan a luxury trip to paris", "plan a family trip to disneyland",
+        "plan a honeymoon trip to maldives", "plan an adventure trip to nepal",
+        "i want to visit japan", "i want to visit iceland", "want to go to europe",
+        "trip to asia", "vacation to caribbean", "trip to africa",
+        "plan a 7 day trip to bali", "plan a week in tokyo",
+        "plan a 10 day europe trip", "trip to south america",
+        "plan my next vacation", "help me plan my holiday",
+        "i need help planning a trip", "trip planning",
+        "plan a solo trip", "plan a group trip", "plan a backpacking trip",
+        "planning a business trip", "plan a weekend getaway",
+        "short trip ideas", "long holiday planning"
+      ]
+    },
+    {
+      "tag": "itinerary.generate",
+      "patterns": [
+        "create an itinerary for paris", "generate itinerary for bali",
+        "make a day by day plan for tokyo", "itinerary for london",
+        "5 day itinerary for dubai", "7 day plan for singapore",
+        "what should i do in rome for 5 days", "3 day itinerary for amsterdam",
+        "weekly plan for new york", "10 day itinerary for europe",
+        "day wise plan for thailand", "detailed plan for maldives",
+        "day by day schedule for japan", "build an itinerary",
+        "create travel schedule", "make travel plan",
+        "what to do in paris for a week", "things to do in bali for 5 days",
+        "how to spend 3 days in tokyo", "best way to spend a week in london",
+        "activities for 7 days in dubai", "sightseeing plan for rome",
+        "tourist schedule for bangkok", "travel agenda for iceland",
+        "give me an itinerary", "make me a travel plan",
+        "plan my days in singapore", "plan my week in bali",
+        "i need a schedule for my trip", "organize my travel days",
+        "2 week itinerary for europe", "one month plan for southeast asia"
+      ]
+    },
+    {
+      "tag": "budget.estimate",
+      "patterns": [
+        "how much will a trip to paris cost", "budget for bali trip",
+        "cost of trip to tokyo", "estimate budget for london",
+        "how expensive is dubai", "what is the cost of visiting singapore",
+        "trip cost to maldives", "how much does it cost to travel to rome",
+        "budget breakdown for thailand", "travel budget for japan",
+        "cost estimate for new york trip", "how much money do i need for europe",
+        "trip expenses for iceland", "total cost for bali vacation",
+        "travel cost calculator", "how much should i budget",
+        "weekly travel budget", "daily travel cost", "travel spending estimate",
+        "what is the budget required", "how much to save for a trip",
+        "affordable travel costs", "budget friendly destination cost",
+        "luxury trip budget", "backpacker budget", "mid range travel cost",
+        "cost of flights and hotels", "all in travel cost",
+        "how much for a 7 day trip", "what will it cost for 2 weeks",
+        "total vacation budget", "price estimate for vacation",
+        "rough budget for my trip", "money needed for travel"
+      ]
+    },
+    {
+      "tag": "flight.search",
+      "patterns": [
+        "find flights to paris", "search flights to bali",
+        "flights from delhi to london", "book a flight to tokyo",
+        "cheapest flights to dubai", "flight options to singapore",
+        "available flights to maldives", "flights to new york",
+        "one way ticket to rome", "return flight to bangkok",
+        "flights from mumbai to new york", "flights from london to bali",
+        "fly to tokyo", "i need a flight to paris",
+        "best flights to europe", "cheap flights to asia",
+        "find me a flight", "search for flights",
+        "flight tickets", "airline tickets", "book flights",
+        "flight to amsterdam", "fly to iceland",
+        "direct flights to dubai", "connecting flights to tokyo",
+        "flight cost estimate", "how much is a flight to paris",
+        "affordable flights", "budget flights to bali",
+        "business class flights", "economy class flights",
+        "last minute flights", "early bird flight deals",
+        "flight schedule", "flight availability",
+        "when is the cheapest time to fly", "best time to book flights"
+      ]
+    },
+    {
+      "tag": "hotel.search",
+      "patterns": [
+        "find hotels in paris", "hotels in bali", "accommodation in tokyo",
+        "where to stay in london", "best hotels in dubai",
+        "hotel recommendations for singapore", "places to stay in maldives",
+        "hotels near rome colosseum", "cheap hotels in bangkok",
+        "luxury hotels in new york", "budget accommodation in amsterdam",
+        "airbnb in paris", "guesthouses in bali", "hostels in europe",
+        "5 star hotels in dubai", "3 star hotels in bangkok",
+        "beach resorts in maldives", "city center hotels in london",
+        "hotel deals", "accommodation options", "where should i stay",
+        "recommend a hotel", "best place to stay",
+        "hotel booking", "resort recommendations",
+        "villa rentals", "apartment rentals for travel",
+        "budget hotels", "luxury resorts", "mid range hotels",
+        "family friendly hotels", "romantic hotels",
+        "hotels with pool", "beachfront hotels",
+        "hotels near airport", "city hotels",
+        "how much are hotels in paris", "hotel prices in bali"
+      ]
+    },
+    {
+      "tag": "packing.assist",
+      "patterns": [
+        "what should i pack for bali", "packing list for paris",
+        "what to carry to tokyo", "packing guide for london",
+        "what clothes to pack for dubai", "essentials for singapore trip",
+        "packing checklist for maldives", "what to bring to rome",
+        "adventure trip packing list", "beach trip packing",
+        "business travel packing", "honeymoon packing list",
+        "winter travel packing", "summer trip packing",
+        "what to pack for cold weather", "tropical destination packing",
+        "travel essentials", "what to bring on vacation",
+        "luggage checklist", "travel bag list",
+        "what items to pack", "travel packing tips",
+        "packing for a week", "packing for 2 weeks",
+        "what not to forget when traveling", "must have travel items",
+        "travel accessories list", "clothing for vacation",
+        "shoes for travel", "documents for travel",
+        "packing for rainy weather", "packing for hiking trip",
+        "backpacking essentials", "light packing tips",
+        "carry on essentials", "checked luggage list"
+      ]
+    },
+    {
+      "tag": "weather.check",
+      "patterns": [
+        "weather in bali in july", "climate of paris in december",
+        "what is the weather like in tokyo in spring",
+        "temperature in london in winter", "weather in dubai in summer",
+        "best time to visit singapore", "when is monsoon in thailand",
+        "weather in iceland in june", "climate of maldives",
+        "rainy season in bali", "snow in tokyo", "hot months in dubai",
+        "best season to visit paris", "weather forecast for rome",
+        "what is the climate like", "best weather for travel",
+        "when to avoid visiting", "peak season weather",
+        "off peak weather", "shoulder season",
+        "is it hot in bali", "is paris cold in december",
+        "does it rain in london", "what temperature in dubai",
+        "best month to visit japan", "what month is best for bali",
+        "summer in europe", "winter in asia",
+        "travel weather guide", "weather tips for travel",
+        "what to expect weather wise", "pack for what weather"
+      ]
+    },
+    {
+      "tag": "destination.recommend",
+      "patterns": [
+        "suggest a travel destination", "recommend a place to visit",
+        "where should i go on vacation", "best places to travel",
+        "top travel destinations", "must visit places in the world",
+        "where to go for honeymoon", "best beach destinations",
+        "adventure travel destinations", "cultural travel spots",
+        "budget travel destinations", "luxury destinations",
+        "solo travel recommendations", "family vacation destinations",
+        "romantic getaway ideas", "best places in asia",
+        "best places in europe", "top destinations in the world",
+        "undiscovered travel gems", "hidden travel spots",
+        "off the beaten path destinations", "popular tourist destinations",
+        "where to go in summer", "winter travel destinations",
+        "tropical destinations", "mountain destinations",
+        "city break ideas", "nature travel destinations",
+        "wildlife destinations", "food tourism destinations",
+        "what are good places to visit", "where can i go",
+        "inspire me for travel", "give me travel ideas",
+        "i want to go somewhere new", "suggest a vacation spot",
+        "recommend somewhere to visit", "what places are worth visiting"
+      ]
+    },
+    {
+      "tag": "user.preferences",
+      "patterns": [
+        "i prefer adventure trips", "i like beach vacations",
+        "i always travel on a budget", "i love luxury travel",
+        "save my preference as solo traveler", "i prefer mid range hotels",
+        "i enjoy cultural trips", "i love food tours",
+        "i prefer warm weather destinations", "i like cold destinations",
+        "i am a backpacker", "i travel with family",
+        "my travel style is luxury", "i am budget conscious",
+        "i prefer off season travel", "i like popular tourist spots",
+        "i prefer boutique hotels", "i like eco friendly travel",
+        "i prefer slow travel", "i like action packed trips",
+        "save my preferences", "update my travel style",
+        "remember i like adventure", "note my budget preference",
+        "i want relaxing vacations", "i prefer city trips",
+        "i like nature travel", "i enjoy historical sites",
+        "i love photography spots", "i prefer guided tours"
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [
+        "xyz abc", "random stuff", "blah blah",
+        "i don't know", "not sure", "confused",
+        "test message", "hello world", "foo bar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "intents": [
+    "budget.estimate",
+    "destination.recommend",
+    "fallback",
+    "flight.search",
+    "hotel.search",
+    "itinerary.generate",
+    "packing.assist",
+    "trip.plan",
+    "user.preferences",
+    "weather.check",
+    "welcome"
+  ],
+  "num_training_examples": 690,
+  "num_intents": 11,
+  "confidence_threshold": 0.35,
+  "model_type": "TF-IDF + LinearSVC (Platt calibrated)",
+  "version": "1.0.0"
+}

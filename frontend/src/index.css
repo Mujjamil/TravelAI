@@ -1,0 +1,57 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base { body { @apply bg-slate-50 text-gray-900; } }
+
+@layer components {
+  .bubble-user  { @apply bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-xs ml-auto shadow; }
+  .bubble-bot   { @apply bg-white text-gray-800 rounded-2xl rounded-tl-sm px-4 py-3 max-w-sm shadow-sm border border-gray-100; }
+  .btn          { @apply font-semibold py-2 px-4 rounded-xl transition-all duration-150 cursor-pointer; }
+  .btn-blue     { @apply btn bg-blue-600 hover:bg-blue-700 text-white; }
+  .btn-ghost    { @apply btn bg-gray-100 hover:bg-gray-200 text-gray-700; }
+  .card         { @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-5; }
+  .tab-active   { @apply bg-blue-600 text-white; }
+  .tab-inactive { @apply bg-gray-100 text-gray-600 hover:bg-gray-200; }
+
+  /* Dashboard results panel */
+  .results-tab-btn {
+    @apply flex-shrink-0 px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors whitespace-nowrap;
+  }
+  .results-tab-active   { @apply border-blue-600 text-blue-600 bg-blue-50/60; }
+  .results-tab-inactive { @apply border-transparent text-slate-500 hover:text-slate-700 hover:bg-slate-50; }
+
+  /* Mobile bottom tab bar */
+  .mobile-bottom-bar {
+    @apply fixed bottom-0 left-0 right-0 flex border-t border-slate-200 bg-white z-40;
+  }
+  .mobile-bottom-btn {
+    @apply flex-1 flex flex-col items-center justify-center py-2 text-xs font-medium transition-colors;
+  }
+}
+
+/* Typing animation */
+.typing-dot { width:8px; height:8px; border-radius:50%; background:#94a3b8; animation:bounce 1.4s infinite ease-in-out; }
+.typing-dot:nth-child(2) { animation-delay:.2s; }
+.typing-dot:nth-child(3) { animation-delay:.4s; }
+@keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-6px);opacity:1} }
+
+/* Toast fade-in */
+@keyframes fade-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.animate-fade-in { animation: fade-in 0.2s ease forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:#f8fafc; }
+::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:3px; }
+
+/* Leaflet */
+.leaflet-container { border-radius:16px; }
+
+/* Cards */
+.flight-card { transition:all 0.2s ease; }
+.flight-card:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,0.1); }
+.hotel-card { transition:all 0.2s ease; }
+.hotel-card:hover { transform:translateY(-2px); border-color:#bfdbfe; box-shadow:0 14px 30px rgba(15,23,42,0.10); }

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelBot AI - Your Intelligent Travel Companion</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#57b5e7',
+secondary: '#8dd3c7'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+</style>
+</head>
+<body class="bg-white">
+<nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center">
+<div class="font-['Pacifico'] text-2xl text-primary">logo</div>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a href="#features" class="text-gray-700 hover:text-primary transition-colors">Features</a>
+<a href="#how-it-works" class="text-gray-700 hover:text-primary transition-colors">How it Works</a>
+<a href="#pricing" class="text-gray-700 hover:text-primary transition-colors">Pricing</a>
+<a href="#contact" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+<button id="signinBtn" class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">Sign Up</button>
+</div>
+</div>
+</div>
+</nav>
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=Beautiful%20travel%20destination%20landscape%20with%20modern%20city%20skyline%20and%20natural%20elements%2C%20clean%20minimalist%20background%20with%20soft%20lighting%2C%20professional%20photography%20style%2C%20left%20side%20has%20subtle%20gradient%20overlay%20for%20text%20placement%2C%20serene%20atmosphere%20with%20mountains%20and%20ocean%20view%2C%20contemporary%20travel%20photography&width=1920&height=1080&seq=hero001&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+<div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="text-left">
+<h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">Your AI Travel Companion</h1>
+<p class="text-xl text-gray-600 mb-8 leading-relaxed">Get personalized itinerary suggestions, seamless booking assistance, and real-time travel updates through our intelligent conversational interface. Plan your perfect trip with AI-powered recommendations.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-white px-8 py-4 !rounded-button text-lg font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap">Start Planning Now</button>
+<button class="border-2 border-primary text-primary px-8 py-4 !rounded-button text-lg font-semibold hover:bg-primary hover:text-white transition-colors whitespace-nowrap">Watch Demo</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="features" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Intelligent Travel Planning Features</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Experience the future of travel planning with our AI-powered features designed to make your journey seamless from start to finish.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+<i class="ri-route-line text-2xl text-primary"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Personalized Itineraries</h3>
+<p class="text-gray-600 leading-relaxed">Our AI analyzes your preferences, budget, and travel style to create custom itineraries that match your unique needs and interests perfectly.</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+<div class="w-16 h-16 bg-secondary/10 rounded-xl flex items-center justify-center mb-6">
+<i class="ri-calendar-check-line text-2xl text-secondary"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Smart Booking Assistant</h3>
+<p class="text-gray-600 leading-relaxed">Book flights, hotels, and activities directly through our chat interface. Compare prices, check availability, and secure the best deals instantly.</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+<div class="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+<i class="ri-notification-3-line text-2xl text-orange-500"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Real-time Updates</h3>
+<p class="text-gray-600 leading-relaxed">Stay informed with live flight status, weather updates, local events, and travel advisories. Never miss important information during your trip.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Live Travel Data Dashboard</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Access real-time flight information and hotel availability to make informed decisions instantly.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-gray-50 p-8 rounded-xl">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold text-gray-900">Live Flight Tracker</h3>
+<div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+<i class="ri-plane-line text-green-600"></i>
+</div>
+</div>
+<div class="space-y-4">
+<div class="bg-white p-4 rounded-lg border border-gray-200">
+<div class="flex justify-between items-center mb-2">
+<span class="font-semibold text-gray-900">AA 1247</span>
+<span class="text-sm text-green-600 bg-green-100 px-2 py-1 rounded">On Time</span>
+</div>
+<div class="text-sm text-gray-600">
+<div class="flex justify-between">
+<span>New York (JFK) → Los Angeles (LAX)</span>
+<span>$324</span>
+</div>
+<div class="flex justify-between mt-1">
+<span>Departure: 2:45 PM</span>
+<span>Arrival: 6:20 PM</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-4 rounded-lg border border-gray-200">
+<div class="flex justify-between items-center mb-2">
+<span class="font-semibold text-gray-900">UA 892</span>
+<span class="text-sm text-orange-600 bg-orange-100 px-2 py-1 rounded">Delayed</span>
+</div>
+<div class="text-sm text-gray-600">
+<div class="flex justify-between">
+<span>Chicago (ORD) → Miami (MIA)</span>
+<span>$287</span>
+</div>
+<div class="flex justify-between mt-1">
+<span>Departure: 4:15 PM</span>
+<span>Arrival: 8:45 PM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 p-8 rounded-xl">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold text-gray-900">Hotel Availability</h3>
+<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+<i class="ri-hotel-line text-blue-600"></i>
+</div>
+</div>
+<div class="space-y-4">
+<div class="bg-white p-4 rounded-lg border border-gray-200">
+<div class="flex justify-between items-center mb-2">
+<span class="font-semibold text-gray-900">Grand Plaza Hotel</span>
+<span class="text-sm text-green-600 bg-green-100 px-2 py-1 rounded">Available</span>
+</div>
+<div class="text-sm text-gray-600">
+<div class="flex justify-between">
+<span>Downtown Manhattan</span>
+<span class="font-semibold text-gray-900">$189/night</span>
+</div>
+<div class="flex justify-between mt-1">
+<span>★★★★☆ (4.2) • 847 reviews</span>
+<span>3 rooms left</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-4 rounded-lg border border-gray-200">
+<div class="flex justify-between items-center mb-2">
+<span class="font-semibold text-gray-900">Oceanview Resort</span>
+<span class="text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded">Limited</span>
+</div>
+<div class="text-sm text-gray-600">
+<div class="flex justify-between">
+<span>Miami Beach</span>
+<span class="font-semibold text-gray-900">$245/night</span>
+</div>
+<div class="flex justify-between mt-1">
+<span>★★★★★ (4.8) • 1,203 reviews</span>
+<span>1 room left</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-it-works" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Three simple steps to plan your perfect trip with our AI travel assistant.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="text-center">
+<div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-chat-3-line text-3xl text-white"></i>
+</div>
+<div class="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">1</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Chat with AI</h3>
+<p class="text-gray-600 leading-relaxed">Start a conversation with our intelligent travel bot. Tell us your destination, dates, preferences, and budget in natural language.</p>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-lightbulb-line text-3xl text-white"></i>
+</div>
+<div class="bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Get Recommendations</h3>
+<p class="text-gray-600 leading-relaxed">Receive personalized itineraries, flight options, hotel suggestions, and activity recommendations tailored to your specific needs.</p>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-check-line text-3xl text-white"></i>
+</div>
+<div class="bg-orange-500 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Book & Travel</h3>
+<p class="text-gray-600 leading-relaxed">Book your entire trip directly through the chat interface and receive real-time updates throughout your journey.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Experience the Conversation</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">See how natural and intuitive it is to plan your trip with our AI travel assistant.</p>
+</div>
+<div class="max-w-2xl mx-auto bg-gray-50 rounded-2xl p-8">
+<div class="space-y-6">
+<div class="flex items-start space-x-4">
+<div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm">
+<p class="text-gray-800">Hi! I'm planning a 5-day trip to Tokyo in April for 2 people. Budget around $3000. We love food and culture!</p>
+</div>
+</div>
+<div class="flex items-start space-x-4 justify-end">
+<div class="bg-primary text-white p-4 rounded-2xl rounded-tr-none shadow-sm">
+<p>Perfect! Tokyo in April is amazing for cherry blossoms. I've created a 5-day itinerary including food tours in Shibuya, cultural sites like Senso-ji Temple, and stays in Shinjuku. Would you like me to show you flight options from your location?</p>
+</div>
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+<i class="ri-robot-line text-white"></i>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm">
+<p class="text-gray-800">Yes! And can you find hotels near good ramen shops?</p>
+</div>
+</div>
+<div class="flex items-start space-x-4 justify-end">
+<div class="bg-primary text-white p-4 rounded-2xl rounded-tr-none shadow-sm">
+<p>Absolutely! I found 3 hotels in Shibuya and Harajuku areas, all within walking distance of top-rated ramen shops. The Grand Tokyo Hotel has Ichiran Ramen just 2 blocks away. Shall I check availability and prices?</p>
+</div>
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+<i class="ri-robot-line text-white"></i>
+</div>
+</div>
+</div>
+<div class="mt-8 text-center">
+<button class="bg-primary text-white px-8 py-3 !rounded-button font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap">Try It Yourself</button>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Powered by Advanced Technology</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Built with cutting-edge AI and machine learning technologies to deliver intelligent, personalized travel experiences.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+<i class="ri-code-s-slash-line text-2xl text-blue-600"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-gray-900">Python Backend</h3>
+<p class="text-gray-600 text-sm">Fast, scalable, and reliable</p>
+</div>
+</div>
+<p class="text-gray-700">Built with Python's robust ecosystem, ensuring high performance, security, and seamless integration with multiple travel APIs and databases.</p>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+<i class="ri-plug-line text-2xl text-green-600"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-gray-900">External API Integration</h3>
+<p class="text-gray-600 text-sm">Real-time travel data</p>
+</div>
+</div>
+<p class="text-gray-700">Connected to leading travel providers including Amadeus, Skyscanner, and Booking.com APIs for live flights, hotels, and pricing information.</p>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-purple-500">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+<i class="ri-brain-line text-2xl text-purple-600"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-gray-900">Custom ML Model</h3>
+<p class="text-gray-600 text-sm">Personalized recommendations</p>
+</div>
+</div>
+<p class="text-gray-700">Proprietary machine learning algorithms trained on millions of travel patterns to understand preferences and deliver tailored suggestions.</p>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4">
+<i class="ri-chat-voice-line text-2xl text-orange-600"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-gray-900">Dialogflow Integration</h3>
+<p class="text-gray-600 text-sm">Natural conversation AI</p>
+</div>
+</div>
+<p class="text-gray-700">Google's Dialogflow powers our conversational interface, enabling natural language understanding and contextual responses.</p>
+</div>
+</div>
+<div class="relative">
+<div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
+<div class="grid grid-cols-2 gap-6">
+<div class="text-center">
+<div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-database-2-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 text-lg">10M+</h4>
+<p class="text-gray-600 text-sm">Data Points Processed</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-timer-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 text-lg">&lt;200ms</h4>
+<p class="text-gray-600 text-sm">Average Response Time</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-cpu-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 text-lg">99.9%</h4>
+<p class="text-gray-600 text-sm">Uptime Reliability</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-global-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 text-lg">150+</h4>
+<p class="text-gray-600 text-sm">Countries Supported</p>
+</div>
+</div>
+</div>
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20"></div>
+<div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-10"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-primary">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h2 class="text-4xl font-bold text-white mb-6">Ready to Plan Your Next Adventure?</h2>
+<p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Join thousands of travelers who trust our AI to create unforgettable experiences. Start planning your perfect trip today.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+<input type="email" placeholder="Enter your email address" class="flex-1 px-6 py-4 rounded-lg border-none text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-blue-200">
+<button class="bg-white text-primary px-8 py-4 !rounded-button font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap">Get Started Free</button>
+</div>
+<p class="text-blue-100 text-sm mt-4">No credit card required • Free 7-day trial</p>
+</div>
+</section>
+<footer class="bg-gray-900 text-white py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<div class="font-['Pacifico'] text-2xl text-primary mb-4">logo</div>
+<p class="text-gray-400 mb-4">Your intelligent travel companion for personalized trip planning and seamless booking experiences.</p>
+<div class="flex space-x-4">
+<i class="ri-facebook-fill text-xl hover:text-primary cursor-pointer transition-colors"></i>
+<i class="ri-twitter-fill text-xl hover:text-primary cursor-pointer transition-colors"></i>
+<i class="ri-instagram-line text-xl hover:text-primary cursor-pointer transition-colors"></i>
+<i class="ri-linkedin-fill text-xl hover:text-primary cursor-pointer transition-colors"></i>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Product</h3>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+<li><a href="#" class="hover:text-white transition-colors">API</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Integrations</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Company</h3>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Support</h3>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+<p>&copy; 2026 TravelBot AI. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script id="navigation-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+const nav = document.querySelector('nav');
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+if (window.scrollY > 100) {
+nav.classList.add('shadow-lg');
+} else {
+nav.classList.remove('shadow-lg');
+}
+});
+});
+</script>
+<script id="smooth-scrolling">
+document.addEventListener('DOMContentLoaded', function() {
+const links = document.querySelectorAll('a[href^="#"]');
+links.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetSection = document.querySelector(targetId);
+if (targetSection) {
+targetSection.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+});
+</script>
+<script id="live-data-updates">
+document.addEventListener('DOMContentLoaded', function() {
+const flightStatuses = ['On Time', 'Delayed', 'Boarding', 'Departed'];
+const hotelStatuses = ['Available', 'Limited', 'Sold Out'];
+setInterval(() => {
+const flightElements = document.querySelectorAll('.bg-white .text-sm');
+const hotelElements = document.querySelectorAll('.bg-white .text-sm');
+flightElements.forEach(element => {
+if (element.textContent.includes('On Time') || element.textContent.includes('Delayed')) {
+const randomStatus = flightStatuses[Math.floor(Math.random() * flightStatuses.length)];
+const statusElement = element.parentElement.querySelector('span:last-child');
+if (statusElement) {
+statusElement.textContent = randomStatus;
+statusElement.className = `text-sm px-2 py-1 rounded ${
+randomStatus === 'On Time' ? 'text-green-600 bg-green-100' :
+randomStatus === 'Delayed' ? 'text-orange-600 bg-orange-100' :
+'text-blue-600 bg-blue-100'
+}`;
+}
+}
+});
+}, 30000);
+});
+</script>
+<script id="login-redirect">
+document.addEventListener('DOMContentLoaded', function () {
+  const DEFAULT_LOGIN_URL = 'http://localhost:5173/login';
+  const loginUrl = window.location.origin && window.location.origin.startsWith('http')
+    ? `${window.location.origin}/login`
+    : DEFAULT_LOGIN_URL;
+  const buttons = [
+    document.getElementById('signinBtn'),
+    ...document.querySelectorAll('.go-login')
+  ].filter(Boolean);
+  buttons.forEach((button) => {
+    button.addEventListener('click', function () {
+      window.location.href = loginUrl;
+    });
+  });
+});
+</script>
+</body>
+</html>
