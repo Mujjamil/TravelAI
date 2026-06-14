@@ -240,23 +240,102 @@ ${mon ? `🗓️  ಟ್ರಾವೆಲ್:   ${mon}\n` : ''}
 ಯಾವುದರಿಂದ ಆರಂಭಿಸೋಣ? 🗺️`
   }
 
-  return `🌍 Trip Overview: ${dest}
-${'─'.repeat(32)}
-📍 Destination: ${dest}
-📅 Duration:    ${dur}
-💰 Budget:      ${bud}
-🎯 Trip Type:   ${type}
-${mon ? `🗓️  Travel:      ${mon}\n` : ''}
-Your complete plan is being prepared with:
-✈️ Flights and booking options
-🏨 Hotels and stays
-🚗 Local ride options
-📅 A day-by-day itinerary
-🎒 A ${dur}-specific packing list
-📍 Top recommended places
-📷 Photo, YouTube and Instagram links
+  const destKey = dest.toLowerCase().replace(/\s+/g, '');
+  const days = getDays(e['trip-duration'] || '4-days');
+  const tip = TIPS[destKey] || TIPS.default;
 
-Open the results panel to explore everything. 🗺️`;
+  // INR budget ranges per tier
+  const INR_BUDGET = {
+    budget:      { flightMin:8000,  flightMax:20000,  hotelMin:1200, hotelMax:2500,  foodMin:600,  foodMax:1200, actMin:400,  actMax:900,  transMin:200, transMax:500  },
+    'mid-range': { flightMin:20000, flightMax:45000,  hotelMin:3500, hotelMax:7000,  foodMin:1500, foodMax:3000, actMin:1200, actMax:2500, transMin:600, transMax:1200 },
+    luxury:      { flightMin:60000, flightMax:150000, hotelMin:15000,hotelMax:40000, foodMin:5000, foodMax:12000,actMin:4000, actMax:10000,transMin:2000,transMax:5000 },
+  };
+  const bi = INR_BUDGET[bud] || INR_BUDGET['mid-range'];
+  const fmt = (min, max) => `₹${min.toLocaleString('en-IN')}–${max.toLocaleString('en-IN')}`;
+  const totalMin = bi.flightMin + (bi.hotelMin + bi.foodMin + bi.actMin + bi.transMin) * days;
+  const totalMax = bi.flightMax + (bi.hotelMax + bi.foodMax + bi.actMax + bi.transMax) * days;
+
+  // Detailed per-destination daily schedules
+  const SCHEDULES = {
+    bali: [
+      ['Arrive at Ngurah Rai Airport and check into your hotel in Ubud', 'Visit Ubud Monkey Forest and wander its ancient temple paths', 'Explore Ubud Art Market — browse local woodcarvings and batik fabrics', 'Try traditional Balinese Nasi Goreng for lunch at a warung', 'Attend an enchanting Kecak fire dance performance at sunset'],
+      ['Start the day with morning yoga at a local studio in Ubud', 'Visit Tegallalang Rice Terraces and try the famous jungle swing', 'Lunch at a cliff-top restaurant overlooking the terraced hills', 'Explore Tirta Empul Holy Spring Temple — observe traditional purification rituals', 'Dinner at a rooftop restaurant in central Ubud with gamelan music'],
+      ['Pre-dawn hike up Mount Batur volcano to watch the sunrise above the clouds', 'Relax with a full Balinese massage and lulur body scrub', 'Afternoon visit to Tanah Lot Sea Temple perched on ocean rocks', 'Sunset cocktails at a clifftop bar overlooking the Indian Ocean', 'Fresh seafood dinner at a beachside shack in Seminyak'],
+      ['Drive to dramatic clifftop Uluwatu Temple and watch macaques roam freely', 'Surf lesson or free beach time at Padang Padang Beach', 'Explore Seminyak\'s trendy boutiques and local designer shops', 'Dinner and nightlife stroll on colourful Legian Street', 'Stargazing on the beach at Kuta after sunset'],
+      ['Full day island-hopping speedboat trip to Nusa Penida', 'Stand at the iconic Kelingking Beach T-Rex cliff viewpoint', 'Snorkel at Crystal Bay — spot the rare Mola Mola sunfish', 'Explore the natural rock arch at Broken Beach and Angel\'s Billabong', 'Return by evening ferry and relax at a beachside café'],
+      ['Morning visit to Besakih — Bali\'s most sacred Mother Temple complex', 'Walk through traditional village life in the Ubud countryside', 'Join a hands-on Balinese cooking class — make sambal, satay and lawar', 'Browse and bargain at Ubud Night Market for street snacks', 'Farewell dinner at a fine-dining restaurant with rice paddy views'],
+      ['Morning spa and relaxation at your hotel', 'Last-minute souvenir shopping at Sukawati Art Market', 'Visit Garuda Wisnu Kencana Cultural Park — see the giant GWK statue', 'Late lunch at a café with sweeping views over terraced fields', 'Transfer to Ngurah Rai Airport for departure'],
+    ],
+    paris: [
+      ['Arrive at CDG Airport and check into your hotel near the centre', 'Visit the iconic Eiffel Tower — book summit tickets in advance', 'Evening Seine river cruise with views of illuminated monuments', 'Stroll along the Champs-Élysées to Arc de Triomphe', 'Dinner at a classic French bistro in Saint-Germain-des-Prés'],
+      ['Morning at the Louvre Museum — see Mona Lisa, Venus de Milo, Winged Victory', 'Lunch at a sidewalk café near the Tuileries Garden', 'Explore the historic Marais district and Place des Vosges', 'Sunset views from the rooftop of Arc de Triomphe', 'Dinner at a brasserie and evening walk through Montmartre'],
+      ['Full day trip to the Palace of Versailles (book skip-the-line tickets)', 'Explore the legendary Hall of Mirrors and Royal Apartments', 'Picnic lunch in the manicured French formal gardens', 'Return to Paris and visit Notre-Dame Cathedral exterior', 'Live jazz performance at a bar in the Latin Quarter'],
+      ['Morning at Musée d\'Orsay — world\'s finest Impressionist collection', 'Lunch at Rue Cler — Paris\'s finest food market street', 'Visit Sainte-Chapelle for its breathtaking medieval stained glass', 'Boat tour along bohemian Canal Saint-Martin', 'Dinner in the lively Le Marais neighbourhood'],
+      ['Shop on Rue du Faubourg Saint-Honoré — Chanel, Louis Vuitton, Hermès', 'Visit the elegant Palais Royal arcades and gardens', 'Afternoon at Centre Georges Pompidou modern art museum', 'Rooftop cocktails at Institut du Monde Arabe with panoramic views', 'Farewell 3-course French tasting dinner at a Michelin-recommended restaurant'],
+    ],
+    tokyo: [
+      ['Arrive at Narita or Haneda Airport, buy Suica IC card for transport', 'Visit Senso-ji Temple in Asakusa — Tokyo\'s oldest and most iconic temple', 'Browse Nakamise Shopping Street for ningyo-yaki and traditional snacks', 'Experience Shibuya Crossing — the world\'s busiest pedestrian intersection', 'Ramen dinner at a local tantanmen or tonkotsu ramen-ya'],
+      ['Morning prayer walk at Meiji Shrine set in a serene forested park', 'Explore Harajuku\'s wild Takeshita Street — crepes and cosplay fashion', 'Lunch at an intimate counter-seat sushi restaurant in Ginza', 'Ride up Tokyo Skytree — 634m tallest tower in Japan', 'Izakaya dinner in vibrant Shinjuku — yakitori and cold draft beer'],
+      ['Akihabara Electric Town — multi-floor arcades, anime, and electronics', 'Ueno Park and Tokyo National Museum — art and samurai culture', 'teamLab Planets digital art museum — immersive walk-through installation', 'Shibuya food street and convenience store snack tour at night', 'Karaoke session in a private box in Shinjuku entertainment district'],
+      ['Day trip to Kamakura — see the Great Buddha and coastal temples', 'Traditional kaiseki lunch at a historic machiya restaurant', 'Return to Tokyo — luxury shopping along Omotesando Avenue', 'Evening snack walk through Tsukiji Outer Market', 'Farewell omakase dinner at a top-reviewed tempura restaurant'],
+    ],
+    london: [
+      ['Arrive at Heathrow or Gatwick, get Oyster card for the Tube', 'Visit Tower of London — see the Crown Jewels and Beefeaters', 'Walk across Tower Bridge with glass-floor walkway views', 'Borough Market — the UK\'s most famous food market', 'Dinner at a cosy Covent Garden restaurant'],
+      ['Morning at the British Museum — Rosetta Stone, Egyptian mummies, free entry', 'Lunch at a quintessential London pub in Bloomsbury', 'Buckingham Palace Changing of the Guard ceremony', 'Westminster — Big Ben, Houses of Parliament, Westminster Abbey', 'West End evening — see a world-class musical or theatre show'],
+      ['Tate Modern — contemporary art with river Thames views', 'Cross the Millennium Bridge to St Paul\'s Cathedral dome climb', 'Camden Market — vintage stalls, street food, live music', 'Walk through colourful Notting Hill and Portobello Road Market', 'Dinner at a curry house on famous Brick Lane in Shoreditch'],
+      ['Morning walk in Hyde Park and visit Kensington Palace state rooms', 'V&A Museum — fashion, jewellery and design through the ages (free entry)', 'Oxford Street or King\'s Road afternoon shopping', 'Sunset drinks at The Shard — 69 floors above London', 'Farewell dinner at a Michelin-starred British restaurant'],
+    ],
+    default: [
+      [`Arrive in ${dest} and check into your hotel`, `Visit the most famous landmark in ${dest} city centre`, 'Explore the historic old town and colourful local street markets', 'Try the most popular local dish at a traditional restaurant', 'Evening promenade or waterfront walk as the city lights up'],
+      ['Morning visit to the city\'s main history or art museum', 'Guided walking tour of the historic quarter with a local guide', 'Lunch at a popular café recommended by locals', 'Afternoon exploring local neighbourhoods off the tourist trail', 'Sunset viewpoint and dinner at a restaurant with a scenic view'],
+      ['Full day trip to a nearby natural attraction or heritage site', 'Hiking trail, nature walk or boat ride depending on the landscape', 'Picnic lunch using fresh local ingredients from the market', 'Return and explore a different neighbourhood of the city', 'Traditional dinner with live cultural music or performance'],
+      ['Morning food tour or local cooking class', 'Visit a religious or cultural monument of significance', 'Afternoon in a botanical garden or local city park', 'Local craft shopping and souvenir hunting', 'Farewell dinner at the highest-rated restaurant in the city'],
+    ],
+  };
+
+  const schedule = SCHEDULES[destKey] || SCHEDULES.default;
+
+  let out = `# ${days}-Day ${dest} Trip Plan (${bud.charAt(0).toUpperCase() + bud.slice(1)} Budget)\n\n`;
+  if (mon) out += `**Travel Period:** ${mon}  |  `;
+  out += `**Trip Type:** ${type}\n\n---\n\n`;
+
+  for (let d = 1; d <= Math.min(days, schedule.length); d++) {
+    const acts = schedule[d - 1];
+    const rawTitle = d === 1 ? `Arrival & First Impressions` : acts[0].replace(/^(Arrive[^,]+[,]?\s*and\s*)/i, '').replace(/^(Start the day with\s*)/i, '').split(' and ')[0].split(',')[0].trim();
+    out += `## Day ${d}: ${rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1)}\n\n`;
+    acts.forEach(a => { out += `- ${a}\n`; });
+    out += '\n';
+  }
+
+  if (days > schedule.length) {
+    out += `## Days ${schedule.length + 1}–${days}: Extended Discovery\n\n`;
+    out += `- Take day trips to nearby towns and hidden natural gems\n`;
+    out += `- Revisit your favourite spots and explore further\n`;
+    out += `- Join a local cooking class or craft workshop\n`;
+    out += `- Explore residential neighbourhoods away from tourist crowds\n`;
+    out += `- Relax at a local café and watch everyday life go by\n\n`;
+  }
+
+  out += `## Estimated Budget (Per Person)\n\n`;
+  out += `| Expense | Cost (INR) |\n`;
+  out += `|---|---|\n`;
+  out += `| ✈️ Flights (round trip) | ${fmt(bi.flightMin, bi.flightMax)} |\n`;
+  out += `| 🏨 Hotels (${days} nights) | ${fmt(bi.hotelMin * days, bi.hotelMax * days)} (${fmt(bi.hotelMin, bi.hotelMax)}/night) |\n`;
+  out += `| 🍽️ Food & Dining | ${fmt(bi.foodMin * days, bi.foodMax * days)} (${fmt(bi.foodMin, bi.foodMax)}/day) |\n`;
+  out += `| 🎡 Activities & Sightseeing | ${fmt(bi.actMin * days, bi.actMax * days)} (${fmt(bi.actMin, bi.actMax)}/day) |\n`;
+  out += `| 🚕 Local Transport | ${fmt(bi.transMin * days, bi.transMax * days)} (${fmt(bi.transMin, bi.transMax)}/day) |\n`;
+  out += `| **Total** | **${fmt(totalMin, totalMax)}** |\n\n`;
+
+  out += `## Tips\n\n`;
+  out += `- ${tip}\n`;
+  out += `- Book flights 6–8 weeks in advance to get the best fares\n`;
+  out += `- Travelling in shoulder season can save 20–30% on hotels and flights\n`;
+  out += `- Use local public transport instead of taxis to cut costs\n`;
+  out += `- Always carry some local cash for street food, markets and tips\n\n`;
+
+  out += `> 📊 Open the **Results panel** to see real-time hotels, flights, and map routes!`;
+
+  return out;
 }
 
 
